@@ -9,7 +9,7 @@ import { Md2Module }  from 'md2/all';
     BrowserModule,
     FormsModule,
     HttpModule,
-    Md2Module
+    Md2Module.forRoot(),
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
