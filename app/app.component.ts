@@ -249,10 +249,10 @@ import {Md2Toast} from 'md2/toast/toast';
 <h2>Tooltip</h2>
   <hr />
   <div>
-    <span tooltip-direction="left" tooltip="On the Left!">Left</span> <br />
-    <span tooltip-direction="right" tooltip="On the Right!">Right</span> <br />
-    <span tooltip-direction="bottom" tooltip="On the Bottom!">Bottom</span> <br />
-    <span tooltip-direction="top" tooltip="On the Top!">Top</span> <br />
+    <span tooltip-position="before" tooltip="On the Left!">Left</span> <br />
+    <span tooltip-position="after" tooltip="On the Right!">Right</span> <br />
+    <span tooltip-position="below" tooltip="On the Bottom!">Bottom</span> <br />
+    <span tooltip-position="above" tooltip="On the Top!">Top</span> <br />
     <span tooltip-delay='1000' tooltip='appears with delay'>Delayed 1 Second</span>
   </div>
 <h2>Multiselect</h2>
@@ -404,6 +404,6 @@ export class AppComponent {
   ];
   constructor(private toast: Md2Toast) { }
   toastMe() {
-    this.toast.show('test message...');
+    this.toast.toast('test message...');
   }
 }
