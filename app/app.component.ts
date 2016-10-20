@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Md2Toast} from 'md2/toast/toast';
+import { Md2Toast } from 'md2';
 @Component({
   selector: 'my-app',
   template: `<h1>My First Angular 2 App</h1>
