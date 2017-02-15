@@ -1,0 +1,497 @@
+<h1>My First Angular 2 App</h1>
+<h2>Accordion</h2>
+<hr />
+<div>
+  <md2-accordion [multiple]="multiple">
+    <md2-accordion-tab class="test" *ngFor="let tab of accordions" [header]="tab.title" [active]="tab.active" [disabled]="tab.disabled">
+      {{tab.content}}
+    </md2-accordion-tab>
+  </md2-accordion>
+</div>
+<h2>Autocomplete</h2>
+<hr />
+<div>
+  <md2-autocomplete [items]="items"
+                    item-text="name"
+                    [(ngModel)]="item"
+                    [disabled]="disabled"
+                    (change)="change($event)"
+                    placeholder="No city selected">
+  </md2-autocomplete>
+  <pre>{{item | json}}</pre>
+  <md2-autocomplete [items]="items"
+                    item-text="name"
+                    [(ngModel)]="item"
+                    [disabled]="disabled"
+                    (change)="change($event)"
+                    placeholder="No city selected">
+  </md2-autocomplete>
+</div>
+<h2>Collapse</h2>
+<hr />
+<div>
+  <button type="button" md-raised-button color="primary" (click)="isCollapsedContent = !isCollapsedContent">
+    Show / Hide Content (Toggle collapse)
+  </button>
+  <hr>
+  <div [collapse]="isCollapsedContent" class="card card-block card-header">
+    <div class="well well-lg">
+      HTML content goes here !
+      <b>bold text</b> <br>
+      <span>this is a collapse example</span>
+    </div>
+  </div>
+  <h3>Angular 2 Collapse HTML Content (IMAGE)</h3>
+  <button type="button" md-raised-button color="primary" (click)="isCollapsedImage = !isCollapsedImage">
+    Show / Hide Image (Toggle collapse)
+  </button>
+  <hr>
+  <div [collapse]="isCollapsedImage" class="card card-block card-header">
+    Collapsed content 2
+  </div>
+</div>
+<h2>colorpicker</h2>
+<hr />
+<div>
+  <h4>Bind on Input Textbox</h4>
+  <md2-colorpicker [(ngModel)]="color" position="bottom" (change)="change($event)">
+  </md2-colorpicker>
+</div>
+<h2>Data Table</h2>
+<div>
+  <md-toolbar>
+    <span>
+      <button md-icon-button click="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+      </button>
+    </span>
+    <!-- This fills the remaining space of the current row -->
+    <span class="flex-fill"></span>
+    <span>
+      <button md-icon-button [md-menu-trigger-for]="friends">
+        <md-icon>group_add</md-icon>
+      </button>
+      <md-menu #friends="mdMenu">
+        <button md-menu-item> 2 new friends </button>
+        <button md-menu-item> 4 new messages </button>
+        <button md-menu-item> 3 friend requests </button>
+      </md-menu>
+      <button md-icon-button>
+        <md-icon>mail</md-icon>
+      </button>
+      <button md-icon-button>
+        <md-icon>keyboard</md-icon>
+      </button>
+      <button md-icon-button>
+        <md-icon>notifications</md-icon>
+      </button>
+      <button md-icon-button (click)="logout()" mdTooltip="Logout">
+        <md-icon>power_settings_new</md-icon>
+      </button>
+    </span>
+  </md-toolbar>
+  <div class="demo-data-table">
+    <h1>Data Table Demo</h1>
+    <hr />
+    <h4>Basic</h4>
+
+    <div>
+      <table [md2Data]="data" #md2="md2DataTable" [rowsPerPage]="10">
+        <thead>
+          <tr>
+            <th style="width: 20%" md2SortBy="name">Name</th>
+            <th style="width: 50%" md2SortBy="email">Email</th>
+            <th style="width: 10%" md2SortBy="age">Age</th>
+            <th style="width: 20%" md2SortBy="city">City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of md2.data">
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.age}}</td>
+            <td>{{i.city}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <md2-pagination [rowsPerPageSet]="[5,10,15]"></md2-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <style>
+      table {
+        display: table;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-spacing: 0;
+        border-collapse: collapse;
+        font-size: 14px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+        table tr {
+          position: relative;
+          height: 36px;
+          vertical-align: middle;
+        }
+
+      tbody tr:hover {
+        background-color: #eee;
+      }
+
+      table th, table td {
+        padding: 0 16px;
+        text-align: left;
+      }
+
+      table td {
+        position: relative;
+        vertical-align: middle;
+        height: 36px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 0.87);
+      }
+    </style>
+  </div>
+
+</div>
+<h2>Date Picker</h2>
+<hr />
+<div>
+  <md2-datepicker [(ngModel)]="date"
+                  [disabled]="disabled"
+                  (change)="change($event)">
+  </md2-datepicker>
+  <pre>{{date}}</pre>
+</div>
+<h2>Dialog</h2>
+<hr />
+<div>
+  <md2-dialog #alert>
+    Clicking the button will close this dialog
+    <md2-dialog-footer>
+      <button md-raised-button (click)="close(alert)">Got it</button>
+    </md2-dialog-footer>
+  </md2-dialog>
+  <button md-raised-button color="primary" (click)="show(alert)">Alert Dialog</button>
+  <md2-dialog #confirm>
+    <md2-dialog-title>Would you like to delete your debt?</md2-dialog-title>
+    All of the banks have agreed to forgive you your debts.
+  </md2-dialog>
+  <button md-raised-button color="primary" (click)="confirm.show()">
+    Confirm Dialog
+  </button>
+  <pre>{{dialogHeader}}</pre>
+  <md2-dialog #custom1 title="{{dialogHeader}}">
+    <div>
+      <input [(ngModel)]="dialogHeader" />
+      <p>
+        The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous
+        tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species
+        are found in nature as wild mangoes. They all belong to the flowering plant family
+        Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been
+        distributed worldwide to become one of the most cultivated fruits in the tropics.
+      </p>
+      <p>
+        The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra,
+        Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango,
+        M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common
+        mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical
+        and subtropical regions.
+      </p>
+      <p>
+        It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the
+        national fruit of India, Pakistan, and the Philippines, and the national tree of
+        Bangladesh. In several cultures, its fruit and leaves are ritually used as floral
+        decorations at weddings, public celebrations, and religious ceremonies.
+      </p>
+    </div>
+  </md2-dialog>
+  <md2-dialog #custom title="{{dialogHeader}}">
+    <div>
+      <button md-raised-button color="primary" flex="auto" (click)="custom1.show()">
+        Custom Dialog
+      </button>
+      <input [(ngModel)]="dialogHeader" />
+      <p>
+        The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous
+        tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species
+        are found in nature as wild mangoes. They all belong to the flowering plant family
+        Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been
+        distributed worldwide to become one of the most cultivated fruits in the tropics.
+      </p>
+      <p>
+        The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra,
+        Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango,
+        M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common
+        mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical
+        and subtropical regions.
+      </p>
+      <p>
+        It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the
+        national fruit of India, Pakistan, and the Philippines, and the national tree of
+        Bangladesh. In several cultures, its fruit and leaves are ritually used as floral
+        decorations at weddings, public celebrations, and religious ceremonies.
+      </p>
+    </div>
+  </md2-dialog>
+  <button md-raised-button color="primary" (click)="custom.show()">
+    Custom Dialog
+  </button>
+</div>
+<h2>Menu</h2>
+<hr />
+<div>
+  <style>
+    [md2-menu] {
+      position: relative;
+      display: inline-block;
+    }
+
+      [md2-menu] .md2-menu-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        background: #fff;
+        list-style: none;
+        min-width: 100px;
+        padding: 8px 0;
+        margin: 0;
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+        -o-transform-origin: left top;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        -moz-transition: all .4s linear;
+        -o-transition: all .4s linear;
+        -webkit-transition: all .4s linear;
+        transition: all .4s linear;
+        -moz-transition-duration: 0.2s;
+        -o-transition-duration: 0.2s;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+        z-index: 1;
+        border-radius: 2px;
+      }
+
+        [md2-menu] .md2-menu-content.right {
+          left: auto;
+          right: 0;
+          -moz-transform-origin: right top;
+          -ms-transform-origin: right top;
+          -o-transform-origin: right top;
+          -webkit-transform-origin: right top;
+          transform-origin: right top;
+        }
+
+        [md2-menu] .md2-menu-content.top {
+          top: auto;
+          bottom: 0;
+          -moz-transform-origin: left bottom;
+          -ms-transform-origin: left bottom;
+          -o-transform-origin: left bottom;
+          -webkit-transform-origin: left bottom;
+          transform-origin: left bottom;
+        }
+
+          [md2-menu] .md2-menu-content.top.right {
+            -moz-transform-origin: right bottom;
+            -ms-transform-origin: right bottom;
+            -o-transform-origin: right bottom;
+            -webkit-transform-origin: right bottom;
+            transform-origin: right bottom;
+          }
+
+      [md2-menu].open > .md2-menu-content {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+
+      [md2-menu] li {
+        position: relative;
+        display: block;
+      }
+
+      [md2-menu] .md2-menu-item {
+        position: relative;
+        display: block;
+        padding: 0 16px;
+        line-height: 36px;
+        color: rgba(0,0,0,.87);
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+      }
+
+        [md2-menu] .md2-menu-item:hover {
+          background-color: rgba(158,158,158,0.2);
+        }
+  </style>
+  <div>
+    Default direction<br />
+    <div md2-menu>
+      <button md-raised-button color="primary" md2-menu-open>Default Menu <span class="caret"></span></button>
+      <ul class="md2-menu-content">
+        <li><a class="md2-menu-item">Badman</a></li>
+        <li><a class="md2-menu-item">Sadman</a></li>
+        <li><a class="md2-menu-item">Lieman</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div>
+    Right direction<br />
+    <div md2-menu>
+      <button md-raised-button color="primary" md2-menu-open>Default Menu <span class="caret"></span></button>
+      <ul class="md2-menu-content right">
+        <li><a class="md2-menu-item">Badman</a></li>
+        <li><a class="md2-menu-item">Sadman</a></li>
+        <li><a class="md2-menu-item">Lieman</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div>
+    Top direction<br />
+    <div md2-menu>
+      <button md-raised-button color="primary" md2-menu-open>Default Menu <span class="caret"></span></button>
+      <ul class="md2-menu-content top">
+        <li><a class="md2-menu-item">Badman</a></li>
+        <li><a class="md2-menu-item">Sadman</a></li>
+        <li><a class="md2-menu-item">Lieman</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div>
+    Top Right direction<br />
+    <div md2-menu>
+      <button md-raised-button color="primary" md2-menu-open>Default Menu <span class="caret"></span></button>
+      <ul class="md2-menu-content top right">
+        <li><a class="md2-menu-item">Badman</a></li>
+        <li><a class="md2-menu-item">Sadman</a></li>
+        <li><a class="md2-menu-item">Lieman</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div>
+    Multi Level<br />
+    <div md2-menu>
+      <button md-raised-button color="primary" md2-menu-open>Default Menu <span class="caret"></span></button>
+      <ul class="md2-menu-content">
+        <li><a class="md2-menu-item">Badman</a></li>
+        <li><a class="md2-menu-item">Sadman</a></li>
+        <li><a class="md2-menu-item">Lieman</a></li>
+        <li md2-menu>
+          <a class="md2-menu-item" md2-menu-not-closable md2-menu-open>2nd Level Menu <span class="caret"></span></a>
+          <ul class="md2-menu-content">
+            <li><a class="md2-menu-item">Badman</a></li>
+            <li><a class="md2-menu-item">Sadman</a></li>
+            <li><a class="md2-menu-item">Lieman</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<h2>Tabs</h2>
+<hr />
+<div>
+  <md2-tabs class="test" selectedIndex="3" (change)="change($event)">
+    <md2-tab class="test" label="Static title">Static content</md2-tab>
+    <md2-tab *ngFor="let tab of tabs"
+             [label]="tab.title"
+             [active]="tab.active"
+             [disabled]="tab.disabled">
+      {{tab.content}}
+    </md2-tab>
+    <md2-tab active="true">
+      <template md2-tab-label>
+        Static title211
+      </template>
+      Static content2
+    </md2-tab>
+  </md2-tabs>
+</div>
+<h2>Tooltip</h2>
+<hr />
+<div>
+  <span tooltip-position="before" tooltip="On the Left!">Left</span> <br />
+  <span tooltip-position="after" tooltip="On the Right!">Right</span> <br />
+  <span tooltip-position="below" tooltip="On the Bottom!">Bottom</span> <br />
+  <span tooltip-position="above" tooltip="On the Top!">Top</span> <br />
+  <span tooltip-delay='1000' tooltip='appears with delay'>Delayed 1 Second</span>
+</div>
+<h2>Multiselect</h2>
+<hr />
+<div>
+  <md2-multiselect [items]="multiItems"
+                   [item-text]="'name'"
+                   [(ngModel)]="multiItem"
+                   [disabled]="disabled"
+                   (change)="change($event)"
+                   placeholder="No city selected">
+  </md2-multiselect>
+  <pre>{{multiItem | json}}</pre>
+  <md2-multiselect [items]="multiItems"
+                   [item-text]="'name'"
+                   [(ngModel)]="multiItem"
+                   [disabled]="disabled"
+                   (change)="change($event)"
+                   placeholder="No city selected">
+  </md2-multiselect>
+</div>
+<h2>Select</h2>
+<hr />
+<div>
+  <select [(ngModel)]="SelectItem" (change)="change($event)" placeholder="placeholder">
+    <option [value]="i.value" *ngFor="let i of SelectItems">{{i.name}}</option>
+  </select>
+  <pre>{{item | json}}</pre>
+  <md2-select [(ngModel)]="SelectItem" (change)="change($event)" [disabled]="disabled" placeholder="Hint text">
+    <md2-option *ngFor="let i of SelectItems" [value]="i.value" [disabled]="i.disabled">{{i.name}}</md2-option>
+  </md2-select>
+</div>
+<h2>Tags</h2>
+<hr />
+<div>
+  <md2-tags [md2-tags]="tags"
+            md2-tag-text="name"
+            [(ngModel)]="tag"
+            (change)="change($event)"
+            placeholder="+Tag">
+  </md2-tags>
+  <pre>{{tag | json}}</pre>
+  <md2-tags [md2-tags]="tags"
+            md2-tag-text="name"
+            [(ngModel)]="tag"
+            (change)="change($event)"
+            placeholder="+Tag">
+  </md2-tags>
+</div>
+<h2>Toast</h2>
+<hr />
+<div>
+  <button type="button" md-raised-button color="primary" (click)="toastMe()">Toast Me!</button>
+</div>
